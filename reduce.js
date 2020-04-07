@@ -1,4 +1,7 @@
-Array.prototype.myReduce = function(fn, initValue) {
+/**
+ * 手写一个 reduce
+*/
+Array.prototype.myReduce = function (fn, initValue) {
     let array = this.slice(0);
     let accumulator;
     if (initValue === undefined) {
@@ -13,22 +16,32 @@ Array.prototype.myReduce = function(fn, initValue) {
     return accumulator;
 }
 let reducer = (accumulator, currentValue) => accumulator + currentValue;
-console.log([1,2,3,4].myReduce(reducer, 5) )
+console.log([1, 2, 3, 4].myReduce(reducer, 5))
 
+/**
+ *  手写compose函数
+ *  compose 返回一个函数
+ *  compose 执行顺序是从右往左
+ *  pipe 执行顺序是从左往右
+ */
 let compose = function name(...args) {
-    let first = args.shift();
-    return args.myReduce((res, fn) => {
-        return fn(res)
-    }, first())
+    return function (x) {
+        return args.reduceRight((res, fn) => {
+            return fn(res)
+        }, x)
+    }
 }
 
-function a (){
+function a() {
     return 'a'
 }
+
 function b(str) {
-    return str+'b'
+    return str + 'b'
 }
+
 function c(str) {
-    return str+'c'
+    return str + 'c'
 }
-console.log(compose(a,b,c))
+const fn = compose(b, c)
+console.log(fn('a'))

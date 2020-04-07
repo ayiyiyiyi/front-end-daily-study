@@ -1,0 +1,58 @@
+[深入浅出webpack](https://github.com/gwuhaolin/dive-into-webpack/)
+
+## webpack 是什么？
+是一个模块打包工具，用来管理项目中的模块依赖，针对不同类型的依赖，webpack 通过对应的模块加载器分析模块间的依赖关系，最后合并编译生成优化的静态资源。
+
+## webpack 基本功能
+- 代码转换：TS 编译成 JS，SCSS 编译成 CSS
+- 文件优化：压缩 JS，CSS，Html 代码，合并压缩图片
+- 模块合并：模块化项目右很多文件，需要构建功能把模块分类合并成一个文件
+- 代码分割：提取多个页面公共代码
+- 热更新：监听本地源代码变化，自动构建，刷新浏览器
+
+### module, chunk, bundle 分别是什么?
+module 是开发中的文件模块；chunk 是 webpack 在进行 module 的依赖分析时，代码分割出来的代码块；bundle 是打包后的文件资源
+
+## webpack 构建过程
+初始化配置参数 -> 绑定事件钩子回调 -> 确定Entry逐一遍历 -> 使用loader编译文件 -> 输出文件
+
+1. 从 entry 里配置的 module 开始，递归解析 entry 所依赖的所有module
+2. 每找到一个module， 都会根据配置的 loader 去找对应的转换规则
+3. 对 module 进行转换后，在 找出当前 module 所依赖的 module
+4. 这些 module 会以 entry 为单位分组，一个 entry 和所依赖的 module 被分到一组 chunk
+5. webpack 最后会把 chunk 转换为文件输出
+6. 在整个过程中， webpack 会在恰当的时机执行 plugin
+
+## webpack 打包原理
+将所有的依赖打包成一个bundle.js，通过代码分割成单元片段按需加载
+
+## 什么是 loader, plugins?
+loader 是一个导出为function的node模块。可以将匹配到的文件进行转换，同时 loader 可链式传递。loader 本身是一个函数，接受源文件为参数，返回转换的结果。
+
+plugins 是一个扩展器，它丰富了 webpack 本身，针对是loader结束后，webpack打包的整个过程，它并不直接操作文件，而是基于事件机制工作，会监听webpack打包过程中的某些节点，执行广泛的任务
+
+### webpack loaders 执行顺序？
+从右至左，从上至下，原因是 Webpack 选择了 compose 方式，而不是pipe的方式而已，在技术上实现从左往右也不会有难度
+
+### 常用 loader
+babel-loader, css-loader, style-loader, file-loader, url-loader
+
+### 常用 plugins
+html-webapck-plugin: 生成html文件的插件，然后根据html template生成N个页面
+clean-webpack-plugin: 打包器清理源目录文件，在webpack打包器清理dist目录
+extract-text-webpack-plugin: 提取 JS 中的 CSS 代码到单独的文件中
+UglifyJsPlugin: 自带插件也是用来对js文件的压缩，如删除空格和注释等来减小体积
+CommonsChunkPlugin: 抽离公用的文件库放置common内
+dll-plugin：借鉴 DDL 的思想大幅度提升构建速度
+define-plugin：定义环境变量
+hot-module-replacement-plugin：开启模块热替换功能。
+optimize-css-assets-webpack-plugin 不同组件中重复的css可以快速去重
+happypack：通过多进程模型，来加速代码构建
+
+## plugin 
+- 编写一个JavaScript命名函数。
+- 在它的原型上定义一个apply方法。
+- 指定挂载的webpack事件钩子。
+- 处理webpack内部实例的特定数据。
+- 功能完成后调用webpack提供的回调。
+
