@@ -1,3 +1,7 @@
+/**
+ * 手写 Promise 及其方法
+ */
+
 const PENDING = 'PENDING';
 const RESOLVED = 'RESOLVED';
 const REJECTED = 'REJECTED';

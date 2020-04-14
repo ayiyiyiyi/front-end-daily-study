@@ -1,5 +1,5 @@
 /**
- * 手写一个 reduce
+ * 手写一个 reduce 函数
 */
 Array.prototype.myReduce = function (fn, initValue) {
     let array = this.slice(0);
@@ -25,10 +25,10 @@ console.log([1, 2, 3, 4].myReduce(reducer, 5))
  *  pipe 执行顺序是从左往右
  */
 let compose = function name(...args) {
-    return function (x) {
+    return function (param) {
         return args.reduceRight((res, fn) => {
             return fn(res)
-        }, x)
+        }, param)
     }
 }
 
