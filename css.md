@@ -1,0 +1,7 @@
+在搭建博客过程中看到一段这样的 css 代码是自己之前没写过的
+```css
+border-bottom: 1px dashed var(--color-contrast-low);
+```
+
+[给网站添加暗黑模式](https://zhuanlan.zhihu.com/p/122420592)
+[var()](https://developer.mozilla.org/zh-CN/docs/Web/CSS/var)

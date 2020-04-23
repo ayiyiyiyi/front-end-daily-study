@@ -7,4 +7,7 @@
 [BigNumber.js](https://github.com/MikeMcl/bignumber.js)
 
 问题？
-为什么 0.1 + 0.2 !== 0.3, 但 0.1 + 0.4 === 0.5, 0.1 + 0.02 !== 0.12 ？
+为什么 0.1 + 0.2 !== 0.3, 但 0.3 + 0.4 === 0.7 ？
+[为什么 0.1 + 0.2 不等于 0.3, 但 0.3 + 0.4 === 0.7 ？](https://cloud.tencent.com/developer/article/1528227)
+
+> keywords: 
