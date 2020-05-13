@@ -11,7 +11,7 @@ Modified: Wed May 13 2020 11:50:40 GMT+0800 (中国标准时间)
 
 [这篇手写async函数及过程分析](https://juejin.im/post/5eb837385188256d6b0b9215)
 
-本质上, async 就是函数(废话)，传入参数为 generator 函数，返回值为 Promise。 内部实现是通过递归，因为迭代器 generator 每次调用都会返回一个 `{value: '', done: false}` , 通过 `done` 来作为递归停止的条件, `value` 的值作为下一次递归传入的值。
+本质上, async 就是函数(废话)，传入参数为 generator 函数，返回值为一个返回 Promise 的函数。 内部实现是通过递归，因为迭代器 generator 每次调用都会返回一个 `{value: '', done: false}` , 通过 `done` 来作为递归停止的条件, `value` 的值作为下一次递归传入的值。
 原理就是这么个原理。
 
 ``` js
@@ -181,6 +181,8 @@ var dataPromise3 = gen.next('这个参数才会被赋给data2变量');
 
 ## 手写
 
+### 案例实现
+
 明白了 generator, 就大概知道怎么写了，就是将每次 next 返回的 Promise 进行 `.then()` 调用，拿到 value 后把它作为下一次的 next 参数传递进去, 直到 `done === true` 循环结束。
 
 ```js
@@ -204,3 +206,12 @@ dataPromise.value.then(res => {
     })
 })
 ```
+这个充满回调地狱既视感的代码，才是 generator 实现案例的方式
+
+### 通用实现
+
+```js
+
+```
+
+
