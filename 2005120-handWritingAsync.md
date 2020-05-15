@@ -1,6 +1,6 @@
 <!--
 Created: Wed May 13 2020 11:30:05 GMT+0800 (中国标准时间)
-Modified: Wed May 13 2020 11:50:40 GMT+0800 (中国标准时间)
+Modified: Fri May 15 2020 15:24:09 GMT+0800 (中国标准时间)
 -->
 
 # 手写 一个 async 函数，又名 babel 是怎么实现 async 的
@@ -11,35 +11,24 @@ Modified: Wed May 13 2020 11:50:40 GMT+0800 (中国标准时间)
 
 [这篇手写async函数及过程分析](https://juejin.im/post/5eb837385188256d6b0b9215)
 
-本质上, async 就是函数(废话)，传入参数为 generator 函数，返回值为一个返回 Promise 的函数。 内部实现是通过递归，因为迭代器 generator 每次调用都会返回一个 `{value: '', done: false}` , 通过 `done` 来作为递归停止的条件, `value` 的值作为下一次递归传入的值。
-原理就是这么个原理。
-
 ``` js
 async function fn() {
     //...
 }
-``
-` 
-等同于
-`
-``
-js
-
-function fn() {
-    return asyncToGenerator(function*() {
-        //...
-    })
-}
-// 或者
+fn().then(res => {})
 ```
 
-或
+从 async 的调用方式上可以看出来， async 是一个函数(废话)，传入参数为 generator 函数，返回值为一个返回 Promise 的函数。 内部实现是通过递归，因为迭代器 generator 每次调用都会返回一个 `{value: '', done: false}` , 通过 `done` 来作为递归停止的条件, `value` 的值作为下一次递归传入的值。
+原理就是这么个原理。
+
+等同于
 
 ``` js
 function* fnG() {
     //...
 }
-asyncToGenerator(fnG())
+
+asyncToGenerator(fnG).then(res => {})
 ```
 
 ## 首先来看案例
@@ -147,7 +136,6 @@ why?
 
 这里就看出来自己虽然用过 generator 函数，但其实对它并不是很了解了。造成上面输出结果的的原因是 **yield表达式本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield表达式的返回值。** 来源为[ES6 阮一峰](https://es6.ruanyifeng.com/#docs/generator) 中的 next 方法的参数一节。
 
-
 ``` js
 const getData = () => new Promise(resolve => setTimeout(() => {
     resolve('data')
@@ -172,11 +160,9 @@ var dataPromise2 = gen.next('这个参数才会被赋给data变量');
 // 'data2:', '这个参数才会被赋给data2变量'
 // 第二次调用 next, 这次做了两件事，一是将 next() 中参数赋值给 data1, 二是执行 yield getData()  并把返回的值赋给了 dataPromise2
 
-
 var dataPromise3 = gen.next('这个参数才会被赋给data2变量');
 // {value: 'success',done: true}
 // 第三次调用 next, 这次同样做了两件事，一是将 next() 中参数赋值给 data2, 二是执行 return 'success'  并把返回的值赋给了 dataPromise2,停止整个流程
-
 ```
 
 ## 手写
@@ -185,10 +171,11 @@ var dataPromise3 = gen.next('这个参数才会被赋给data2变量');
 
 明白了 generator, 就大概知道怎么写了，就是将每次 next 返回的 Promise 进行 `.then()` 调用，拿到 value 后把它作为下一次的 next 参数传递进去, 直到 `done === true` 循环结束。
 
-```js
+``` js
 const getData = () => new Promise(resolve => setTimeout(() => {
     resolve('data')
 }, 1000))
+
 function* testG() {
     const data1 = yield getData();
     console.log('data1: ', data1);
@@ -206,12 +193,100 @@ dataPromise.value.then(res => {
     })
 })
 ```
+
 这个充满回调地狱既视感的代码，才是 generator 实现案例的方式
 
 ### 通用实现
 
-```js
+#### 自己的简单实现
+
+``` js
+function asyncToGenerator(fnG) {
+    return function() {
+        const fn = fnG.apply(this, arguments);
+        return new Promise(resolve => {
+            function step(key, val) {
+                const data = fn[key](val);
+                const {
+                    done,
+                    value
+                } = data;
+                if (done) {
+                    resolve(value)
+                } else {
+                    value.then(res => {
+                        step('next', res);
+                    })
+                }
+            }
+            step('next')
+        })
+
+    }
+}
+```
+
+简单的实现了一下，除了对异常没有进行处理外，还有一个大的缺陷，缺陷就是没有对 value 进行处理，因为 例子里面 `getData`是 Promise, 但如果 value 不是 Promise 的话， `value.then` 就会报错了。所以这里需要用到 `Promise.resolve` 对 value 进行处理。使它一定是一个 Promise。
+
+#### throw() 异常处理
+ 
+async 对异常的处理是这样的， 在迭代器迭代的过程中，如果 迭代器的 Promise 抛出了异常，则直接 reject 该异常，不再进行下面的 await 迭代。
+
+那实现异常的处理就又需要一个之前没有用过的方法， Generator 的 `throw()` 。
+它和next()一样，都是属于 `Generator.prototype` 上的方法，且返回值也是和next()一样。
+
+简单例子:
+
+``` js
+function* gen() {
+    while (true) {
+        try {
+            yield 'hello'
+        } catch (e) {
+            console.log(e)
+        }
+    }
+}
+var g = gen();
+g.next(); // { value: 'LinDaiDai', done: false }
+g.next(); // { value: 'LinDaiDai', done: false }
+g.throw(new Error('错误')); // Error: '错误'
+g.throw('错误1')); // '错误1'
+```
+
+#### 完整代码
+
+``` js
+function asyncToGenerator(fnG) {
+    return function () {
+        const fn = fnG.apply(this, arguments);
+        return new Promise((resolve, reject) => {
+            function step(key, val) {
+                let data;
+                try {
+                    data = fn[key](val);
+                } catch (e) {
+                    return reject(e)
+                }
+                const { done, value } = data;
+                if (done) {
+                    return resolve(value)
+                } else {
+                    return Promise.resolve(value).then(res => {
+                        step('next', res);
+                    }, err => {
+                        step('throw', err);
+                    })
+                }
+            }
+            step('next')
+        })
+
+    }
+}
 
 ```
 
+[手写代码版地址](./handwriting/async.js)
 
+至此，大功告成！
