@@ -74,5 +74,5 @@ App() 函数用来注册一个小程序。接受一个 object 参数，其指定
 这次使用的是 vant-webapp 的 NavBar 组件。
 
 ### 小程序地图
-使用 map 组件可以开发地图相关功能. 通过 map 组件可以获取到经纬度, 如果需要对经纬度进行解析或根据地址解析出经纬度,则需要接入**微信地图小程序 SDK**
-详情使用明天补充上.
+使用 map 组件可以开发地图相关功能. 通过 map 组件可以获取到经纬度, 如果需要对经纬度进行解析或根据地址解析出经纬度,则需要接入[微信地图小程序 SDK](https://lbs.qq.com/miniProgram/jsSdk/jsSdkGuide/jsSdkOverview). SDK使用见链接.
+

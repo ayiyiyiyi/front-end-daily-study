@@ -5,8 +5,7 @@ Array.prototype.myReduce = function (fn, initValue) {
     let array = this.slice(0);
     let accumulator;
     if (initValue === undefined) {
-        accumulator = array[0];
-        array.shift();
+        accumulator = array.shift();
     } else {
         accumulator = initValue;
     }
@@ -24,7 +23,7 @@ console.log([1, 2, 3, 4].myReduce(reducer, 5))
  *  compose 执行顺序是从右往左
  *  pipe 执行顺序是从左往右
  */
-let compose = function name(...args) {
+let compose = function _compose(...args) {
     return function (param) {
         return args.reduceRight((res, fn) => {
             return fn(res)
