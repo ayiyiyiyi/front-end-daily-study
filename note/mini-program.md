@@ -52,7 +52,25 @@ App() 函数用来注册一个小程序。接受一个 object 参数，其指定
 
 ## 功能点
 
-### 小程序自定义导航
+### 小程序导航
+
+#### 小程序导航
+
+在做小程序时有一个逻辑: 进入首页 -> 判断是否登录 -> 未登录 -> 跳转授权手机号登录页面. 那在这个逻辑中, 在授权页用户是不可跳回首页的, 在实际开发过程中,微信的导航栏却在右上角出现了 home 图标. 
+
+home 图标出现的原因是: **不是首页或 tabBar 页面, 页面在栈最底层**
+
+刚好我从 home 页 redirectTo 授权登录页, 此时栈中只有这一个页面, 所以展示了 home 图标.
+
+**隐藏方法**:  在 Page 的 onShow 方法中调用 hideHomeButton 隐藏返回首页按钮
+
+```js
+  onShow: function () {
+    wx.hideHomeButton()
+  }
+```
+
+#### 自定义导航栏
 
 客户端 7.00  支持自定义导航样式，只保留右上角胶囊按钮，且允许单页设置, 需要在 app.json 或 页面配置文件中做如下配置 
 
@@ -74,5 +92,8 @@ App() 函数用来注册一个小程序。接受一个 object 参数，其指定
 这次使用的是 vant-webapp 的 NavBar 组件。
 
 ### 小程序地图
+
+[小程序地图](https://developers.weixin.qq.com/miniprogram/dev/component/map.html)
+
 使用 map 组件可以开发地图相关功能. 通过 map 组件可以获取到经纬度, 如果需要对经纬度进行解析或根据地址解析出经纬度,则需要接入[微信地图小程序 SDK](https://lbs.qq.com/miniProgram/jsSdk/jsSdkGuide/jsSdkOverview). SDK使用见链接.
 
