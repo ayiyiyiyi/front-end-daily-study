@@ -97,3 +97,46 @@ home 图标出现的原因是: **不是首页或 tabBar 页面, 页面在栈最�
 
 使用 map 组件可以开发地图相关功能. 通过 map 组件可以获取到经纬度, 如果需要对经纬度进行解析或根据地址解析出经纬度,则需要接入[微信地图小程序 SDK](https://lbs.qq.com/miniProgram/jsSdk/jsSdkGuide/jsSdkOverview). SDK使用见链接.
 
+#### 实现拖动地图定位功能
+
+地图移动时,使用 `MapContext.getCenterLocation` 可以获取到地图中心经纬度, 把选点图标定位在地图中心,此时获取到的就是选点图标的位置. 将经纬度进行逆地址解析,进行展示.
+
+实例代码:
+
+```html
+<map class="map" id="map" latitude="{{location.lat}}" longitude="{{location.lng}}" bindregionchange="onChangeRegion"  >
+	<image class="location-picker-marker" src="./img/Big_Marker@2x.png"/>
+</map>
+```
+```js
+var QQMapWX = require('xxx/qqmap-wx.js');
+var qqmapsdk = new QQMapWX({
+    key: '开发密钥（key）' // 必填
+}); 
+Page({
+    onChangeRegion(event) {
+        const _this = this;
+        if (event.type === 'end' && event.causedBy === 'drag') {
+        console.log(event.type);
+        const mapCtx = wx.createMapContext('map', this); // map 为组件的 id
+        mapCtx.getCenterLocation({ // 获取当前中心经纬度
+            success: res => {
+                const latitude = res.latitude;
+                const longitude = res.longitude;
+                // 调用腾讯地图, 逆地址解析得出经纬度坐标描述
+                _this.reverseGeocoder()
+            }
+        })
+        }
+    },
+    reverseGeocoder() {
+        const _this = this;
+        qqmapsdk.reverseGeocoder({
+            location: '39.984060,116.307520', // string格式经纬度描述
+            success: function (data) { 
+                console.log(data) 
+            }
+        })
+     }
+})
+```
