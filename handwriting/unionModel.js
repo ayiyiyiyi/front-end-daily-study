@@ -9,18 +9,17 @@ class Koa {
     compose = () => {
         const _this = this;
         return () => {
-            function dispatch(i) {
+            function dispatch (i) {
                 if (i === _this.middlewares.length) return Promise.resolve();
                 const fn = _this.middlewares[i];
-                return Promise.resolve(fn(() => dispatch(i + 1)))
+                return Promise.resolve(fn(() => dispatch(i + 1)));
             }
             dispatch(0)
         }
     }
     listen = () => {
-        console.log(this.middlewares)
         let fn = this.compose()
-        fn()
+        let res = fn();
     }
 }
 
@@ -37,6 +36,11 @@ function fn() {
 const app = new Koa();
 
 app.use(async (next) => {
+    console.log(0);
+    await next();
+    console.log(0.1);
+});
+app.use(async (next) => {
     console.log(1);
     await next();
     console.log(2);
@@ -44,8 +48,7 @@ app.use(async (next) => {
 
 app.use(async (next) => {
     console.log(3);
-    await fn();
-    next();
+    await next();
     console.log(4);
 });
 
