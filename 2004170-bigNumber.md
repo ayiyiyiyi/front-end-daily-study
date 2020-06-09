@@ -12,4 +12,13 @@
 为什么 0.1 + 0.2 !== 0.3, 但 0.3 + 0.4 === 0.7 ？
 [为什么 0.1 + 0.2 不等于 0.3, 但 0.3 + 0.4 === 0.7 ？](https://cloud.tencent.com/developer/article/1528227)
 
-> keywords: 
+## Number 的储存标准
+
+JavaScript Number 采用的是 IEEE 754 定义的 64 位双精度浮点型来表示。
+![](./assets/bigNumber0)
+
+* sign: 符号位,占 1 位
+* exponent: 指数位, 占 11 位
+* fraction: 有效数字位, 占 52 位
+
+exponent 取值范围 为 0 ~ 2047 即 2^11,
