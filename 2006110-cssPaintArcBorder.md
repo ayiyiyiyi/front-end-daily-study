@@ -12,6 +12,7 @@ Modified: Thu Jun 11 2020 14:21:40 GMT+0800 (中国标准时间)
 ## border-radius
 
 [border-radius MDN](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-radius)
+[灵活的椭圆形](https://www.w3cplus.com/css3/css-secrets/flexible-ellipses.html)
 
 用 border-radius 画圆和圆角边框是最常用的,但使用的太频繁反而忘记了 `border-radius` 实现圆是怎么实现的.
 
