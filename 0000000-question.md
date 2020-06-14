@@ -4,6 +4,7 @@
 
 a lot of question: [前端技术清单](https://juejin.im/post/5bdfb387e51d452c8e0aa902#heading-12)
 
+[2020年前端面试复习必读文章](https://juejin.im/post/5e8b163ff265da47ee3f54a6#heading-9)
 ## 技术相关
 
 ### 1. 如何获取首屏加载时长? 如何定位首屏加载时长问题?
@@ -21,6 +22,8 @@ a lot of question: [前端技术清单](https://juejin.im/post/5bdfb387e51d452c8
 ### 7. 图片上传的过程?
 
 ### 8. SSL 是什么?
+
+### 9. axios 是如何实现的
 
 [首字节时间 (TTFB) 如何影响了网站性能](https://juejin.im/post/5e392ba6f265da57584d9227)
 
