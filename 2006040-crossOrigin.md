@@ -21,6 +21,9 @@ Modified: Sun Jun 14 2020 23:51:21 GMT+0800 (China Standard Time)
 ```
  jsonp
  CORS
+ postMessage
+ nginx proxy
+ WebSocket
 ```
 ### JSONP
 浏览器的 src 属性不受同源策略的限制，比如 img / script 等。且 script 可以执行其他域的 js 函数，所以 JSONP 就是通过请求一个包含回调函数+数据的 js 文件来解决跨域问题的。
@@ -118,3 +121,32 @@ Access-Control-Max-Age: 1728000
 ##### 预检请求通过后的正常请求
 
 预检请求通过后的正常请求, 同简单请求, 请求头必定会有 `origin` 字段, 响应头必定会有 `Access-Control-Allow-Origin` 字段
+
+### postMessage
+
+window.postMessage(message,targetOrigin) 方法是html5新特性，可以使用它来向其它的window对象发送消息，无论这个window对象是属于同源或不同源。
+
+目前IE8+、FireFox、Chrome、Opera等浏览器都已经支持window.postMessage方法.
+
+通过它可以解决：
+
+* 页面和其打开的新窗口的数据传递
+* 多窗口之间消息传递
+* 页面与嵌套的iframe消息传递
+* 上面三个场景的跨域数据传递
+
+```js
+otherWindow.postMessage(message, targetOrigin, [transfer]);
+```
+
+### nginx 代理
+
+实现原理: **同源策略是浏览器需要遵循的标准,而如果是服务器向服务器请求就无需遵循同源策略。**代理服务器,需要做以下几个步骤:
+
+1. 接受客户端请求
+2. 将请求转发给服务器
+3. 拿到服务器响应数据
+4. 将响应转发给客户端
+
+### WebSocket 协议跨域
+WebSocket protocol是HTML5一种新的协议。它实现了浏览器与服务器全双工通信，同时允许跨域通讯.

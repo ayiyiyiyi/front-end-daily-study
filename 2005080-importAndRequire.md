@@ -7,12 +7,12 @@ Modified: Fri May 08 2020 09:57:31 GMT+0800 (中国标准时间)
 # ES6 模块与 CommonJs 模块
 
 
+
 > 以为相同的两种东西其实完全不同
 > 资料整理来自《ES6阮一峰》
 
 ## ES6 模块化语法
 [ES6 模块化语法](https://es6.ruanyifeng.com/#docs/module)
-
 ## ES6 与 CommonJs 模块差异
 
 1. CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。
