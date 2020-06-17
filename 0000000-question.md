@@ -23,7 +23,11 @@ a lot of question: [前端技术清单](https://juejin.im/post/5bdfb387e51d452c8
 
 ### 8. SSL 是什么?
 
-### 9. axios 是如何实现的
+### 9. axios 是如何实现的?
+
+### 10. js 隐式转换? [链接](https://juejin.im/post/5a7172d9f265da3e3245cbca#heading-2)
+
+### Vuex 实现
 
 [首字节时间 (TTFB) 如何影响了网站性能](https://juejin.im/post/5e392ba6f265da57584d9227)
 
