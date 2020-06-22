@@ -19,8 +19,6 @@ if (a == 1 && a == 2 && a == 3) {
 }
 ```
 
-一直没有搞明白的点是: ToPrimitive(), ToNumber(), ToString() 三者分别什么时候使用.
-
 ## ToPrimitive
 
 js 通过 ToPrimitive 将值转换为原始值
@@ -31,7 +29,7 @@ input 是要转换的值，PreferredType 是可选参数，可以是 Number 或 
 
 ### 如果PreferredType被标记为Number，则会进行下面的操作流程来转换输入的值。
 
-``` JS
+```
 1、如果输入的值已经是一个原始值，则直接返回它
 2、否则，如果输入的值是一个对象，则调用该对象的valueOf()方法，
    如果valueOf()方法的返回值是一个原始值，则返回这个原始值。
@@ -40,13 +38,15 @@ input 是要转换的值，PreferredType 是可选参数，可以是 Number 或 
 ```
 
 ### 如果PreferredType被标记为String，则会进行下面的操作流程来转换输入的值。
-``` JS
+
+```
 1、如果输入的值已经是一个原始值，则直接返回它
 2、否则，调用这个对象的toString()方法，如果toString()方法返回的是一个原始值，则返回这个原始值。
 3、否则，如果输入的值是一个对象，则调用该对象的valueOf()方法，
    如果valueOf()方法的返回值是一个原始值，则返回这个原始值。
 4、否则，抛出TypeError异常。
 ```
+
 ### PreferredType是可选参数，那么如果没有这个参数时，怎么转换呢？PreferredType的值会按照这样的规则来自动设置：
 ```js
 1、该对象为Date类型，则PreferredType被设置为String
