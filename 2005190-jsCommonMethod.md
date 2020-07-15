@@ -15,8 +15,10 @@ reduce 的使用和如何实现：
 
 ### slice
 
-slice(begin, end) 浅拷贝返回新数组，不改变原数组。
-
+浅拷贝返回新数组，不改变原数组。
+```js
+Array.slice(begin, end)
+```
 **begin：可选**
 
 1. 从该索引开始提取原数组元素。
@@ -120,3 +122,17 @@ Array.from([1, 2, 3]).map(x => x * x);
 
 every 传入一个函数, 数组内每个元素都满足函数, 则返回 true, 否则返回 false. 空数组任何情况都返回 true.
 some  传入一个函数, 数组只要有一个元素都满足函数, 就返回 true, 否则返回 false. 空数组任何情况都返回 false.
+
+### splice 
+
+删除或改变数组元素
+
+```js
+Array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+```
+
+**start**: 开始位置 (从0计数), 若大于数组长度,则从数组末尾添加内容. 若为负数, 则表示从末尾开始的第几位( -1 表示从末尾开始的第一位)
+
+**deleteCount**: 可选,删除元素的个数
+
+**item1,item2...**: 可选,插入数组的元素
