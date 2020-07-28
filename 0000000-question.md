@@ -31,6 +31,11 @@ a lot of question: [前端技术清单](https://juejin.im/post/5bdfb387e51d452c8
 
 ### BFF 和 serverLess 是什么?
 
+### axios 封装实现用户无感刷新
+
+https://juejin.im/post/5f1ba98ae51d4534b73a9d7a#heading-4
+
+https://github.com/TaleLin/lin-cms-vue/blob/master/src/lin/plugin/axios.js
 
 
 ## 其他技能

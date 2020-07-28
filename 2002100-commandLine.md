@@ -11,7 +11,7 @@
 open .
 ```
 ### 打开当前路径的vscode
-貌似需要配置item2 =.= 回家问问慕逸哥哥 
+貌似需要配置item2 =.=
 ``` bash
 open code
 ```
