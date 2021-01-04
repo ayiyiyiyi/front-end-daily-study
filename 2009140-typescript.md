@@ -2,7 +2,7 @@
 Created: Mon Sep 14 2020 15:22:08 GMT+0800 (China Standard Time)
 Modified: Mon Sep 14 2020 16:39:45 GMT+0800 (China Standard Time)
 -->
-<!-- tags: js, ts -->
+<!-- Tag: js, ts -->
 
 # typeScript 
 

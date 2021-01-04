@@ -2,7 +2,7 @@
 Created: Thu Jun 11 2020 18:06:40 GMT+0800 (中国标准时间)
 Modified: Fri Jun 12 2020 19:14:43 GMT+0800 (中国标准时间)
 -->
-<!-- miniprogram -->
+<!-- Tag: miniprogram -->
 
 # 小程序原理
 

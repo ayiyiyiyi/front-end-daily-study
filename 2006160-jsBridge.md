@@ -2,7 +2,7 @@
 Created: Tue Jun 16 2020 10:40:58 GMT+0800 (中国标准时间)
 Modified: Tue Jun 16 2020 19:47:24 GMT+0800 (China Standard Time)
 -->
-<!-- js, Hybrid -->
+<!-- Tag: js, Hybrid -->
 
 # JSBridge 实现原理
 

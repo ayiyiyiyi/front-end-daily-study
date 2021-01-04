@@ -2,7 +2,7 @@
 Created: Mon Feb 03 2020 19:52:29 GMT+0800 (China Standard Time)
 Modified: Mon Jun 15 2020 19:54:19 GMT+0800 (China Standard Time)
 -->
-<!-- js -->
+<!-- Tag: js -->
 
 # js 原型链
 

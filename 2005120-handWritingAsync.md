@@ -3,7 +3,7 @@ Created: Wed May 13 2020 11:30:05 GMT+0800 (中国标准时间)
 Modified: Fri May 15 2020 15:24:09 GMT+0800 (中国标准时间)
 -->
 
-<!-- js, babel -->
+<!--  Tag: js, babel -->
 
 # 手写 一个 async 函数，又名 babel 是怎么实现 async 的
 

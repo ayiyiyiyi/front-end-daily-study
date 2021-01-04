@@ -2,7 +2,7 @@
 Created: Fri Jul 10 2020 15:15:42 GMT+0800 (China Standard Time)
 Modified: Fri Jul 10 2020 15:15:42 GMT+0800 (China Standard Time)
 -->
-<!-- tags: js, vue -->
+<!-- Tag: js, vue -->
 # vue composition api
 
 > 相关链接🔗： [探秘 Vue3.0 - Composition API 在真实业务中的尝鲜姿势](https://juejin.im/post/5d6e4986518825267a756a8d#heading-2)

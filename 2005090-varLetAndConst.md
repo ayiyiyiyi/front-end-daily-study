@@ -2,7 +2,7 @@
 Created: Sat May 09 2020 18:31:55 GMT+0800 (中国标准时间)
 Modified: Sat May 09 2020 18:31:55 GMT+0800 (中国标准时间)
 -->
-<!-- js, es6 -->
+<!-- Tag: js, es6 -->
 
 # ES6 之 let const
 

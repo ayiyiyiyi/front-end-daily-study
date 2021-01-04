@@ -2,7 +2,7 @@
 Created: Fri Feb 07 2020 20:25:49 GMT+0800 (China Standard Time)
 Modified: Mon Jun 15 2020 20:27:00 GMT+0800 (China Standard Time)
 -->
-<!-- browser, js -->
+<!-- Tag: browser, js -->
 
 # JS 事件循环
 

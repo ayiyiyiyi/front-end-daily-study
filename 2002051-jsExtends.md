@@ -2,7 +2,7 @@
 Created: Wen Feb 05 2020 23:21:53 GMT+0800 (China Standard Time)
 Modified: Sun Jun 14 2020 23:47:19 GMT+0800 (China Standard Time)
 -->
-<!-- js -->
+<!-- Tag: js -->
 
 # js 的继承
 > 花了一天时间整理的，第一次感觉真正搞懂了js的继承。权威的资料果然还是要看《Javascript高级程序设计》。感觉自己走了好多弯路，当然同时也偷了好多懒。

@@ -2,7 +2,7 @@
 Created: Tue May 19 2020 10:11:16 GMT+0800 (中国标准时间)
 Modified: Tue May 19 2020 10:15:08 GMT+0800 (中国标准时间)
 -->
-<!-- js -->
+<!-- Tag: js -->
 
 # JS 常用方法记录
 

@@ -2,7 +2,7 @@
 Created: Wed Jun 17 2020 22:13:20 GMT+0800 (China Standard Time)
 Modified: Wed Jun 17 2020 22:13:20 GMT+0800 (China Standard Time)
 -->
-<!-- js -->
+<!-- Tag: js -->
 # JS 隐式转换
 > 准备面试的时候发现自己隐式转换这块讲不清楚, 所以总结一下. 不得不吐槽一下 js 的隐式转换看起来各种坑爹. 相关链接: [隐式转换](https://juejin.im/post/5a7172d9f265da3e3245cbca#heading-2), [深入理解Javascript中Object类型的转换](https://zhuanlan.zhihu.com/p/29730094)
 
