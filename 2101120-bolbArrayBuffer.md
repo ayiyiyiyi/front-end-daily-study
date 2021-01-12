@@ -16,7 +16,7 @@ Modified: Tue Jan 12 2021 21:27:21 GMT+0800 (China Standard Time)
 
 Blob 并不是 js 中特有的, 最初是为了在数据库中使用, 用于储存音频, 图片或视频等无法储存在常规数据库字段大大文件. 因此 Blob 实际上指的是 **二进制大对象**. 
 
-在 js 中, Blob 用于将文件表示为不可变的原始数据. Blob 有两个属性, size 和 type. size 是以字节为单位的数据大小. 类型是一个包 [https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types](MIME) 类型的字符串.
+在 js 中, Blob 用于将文件表示为不可变的原始数据. Blob 有两个属性, size 和 type. size 是以字节为单位的数据大小. 类型是一个包 [MIME](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types) 类型的字符串.
 
 ``` JS
 // 创建 Blob
