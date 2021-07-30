@@ -172,7 +172,8 @@ function Child(name, parentName) {
 
 function inheritPrototype(superType, subType) {
 
-    let prototype = create(superType.prototype);
+    // let prototype = create(superType.prototype);
+    let prototype = Object.create(superType.prototype);
 
     subType.prototype = prototype;
     subType.prototype.constructor = subType;
